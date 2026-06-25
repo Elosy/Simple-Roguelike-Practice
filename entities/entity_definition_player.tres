@@ -18,3 +18,4 @@ texture = ExtResource("4_ehhks")
 color = Color(0.13725491, 1, 0.043137256, 1)
 fighter_definition = SubResource("Resource_2ijtb")
 ai_type = 1
+inventory_capacity = 26

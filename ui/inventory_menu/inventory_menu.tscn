@@ -1,0 +1,58 @@
+[gd_scene format=3 uid="uid://3uvnneuinasb"]
+
+[ext_resource type="Texture2D" uid="uid://ky4x8aog18fb" path="res://dejavu10x10_gs_tc.png" id="1_gqjon"]
+[ext_resource type="Script" uid="uid://bmjiq26nf7kpl" path="res://ui/inventory_menu/inventory_menu.gd" id="1_tulx0"]
+[ext_resource type="FontFile" uid="uid://bmnpokinfwckt" path="res://fonts/kenney_kenney-fonts/Kenney Pixel.ttf" id="2_tulx0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vef74"]
+atlas = ExtResource("1_gqjon")
+region = Rect2(100, 20, 10, 10)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wa6qm"]
+content_margin_left = 8.0
+content_margin_top = 8.0
+content_margin_right = 8.0
+content_margin_bottom = 8.0
+texture = SubResource("AtlasTexture_vef74")
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 5.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_u1r0k"]
+font = ExtResource("2_tulx0")
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_kqotp"]
+color = Color(1, 1, 1, 1)
+
+[node name="InventoryMenu" type="CanvasLayer" unique_id=1640100823 node_paths=PackedStringArray("inventory_list", "title_label")]
+script = ExtResource("1_tulx0")
+inventory_list = NodePath("CenterContainer/PanelContainer/VBoxContainer/InventoryList")
+title_label = NodePath("CenterContainer/PanelContainer/VBoxContainer/TitleLabel")
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=2052842790]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="CenterContainer" unique_id=1244699101]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_wa6qm")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer" unique_id=1612202716]
+layout_mode = 2
+
+[node name="TitleLabel" type="Label" parent="CenterContainer/PanelContainer/VBoxContainer" unique_id=212224112]
+layout_mode = 2
+label_settings = SubResource("LabelSettings_u1r0k")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="CenterContainer/PanelContainer/VBoxContainer" unique_id=894645449]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_kqotp")
+
+[node name="InventoryList" type="VBoxContainer" parent="CenterContainer/PanelContainer/VBoxContainer" unique_id=22211788]
+layout_mode = 2
