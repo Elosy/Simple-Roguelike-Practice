@@ -25,7 +25,7 @@ func _ready() -> void:
 
 
 func _physics_process(_delta: float) -> void:
-	var action: Action = input_handler.get_action(player)
+	var action: Action = await input_handler.get_action(player)
 	if action:
 		var previous_player_position: Vector2i = player.grid_position
 		if action.perform():

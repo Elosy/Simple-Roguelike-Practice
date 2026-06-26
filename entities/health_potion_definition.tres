@@ -6,6 +6,7 @@
 
 [sub_resource type="Resource" id="Resource_fhrql"]
 script = ExtResource("1_sfgr6")
+healing_amount = 5
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2eq7y"]
 atlas = ExtResource("3_7xbur")

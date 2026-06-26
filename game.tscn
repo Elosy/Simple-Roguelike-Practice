@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://g2p23fdedf3d" path="res://handlers/game_over_input_handler.gd" id="4_vef74"]
 [ext_resource type="Script" uid="uid://c21p764jmxbbl" path="res://map/field_of_view.gd" id="5_7jktm"]
 [ext_resource type="Script" uid="uid://b0jk0jsvpunkx" path="res://handlers/history_viewer_input_handler.gd" id="5_iotsf"]
+[ext_resource type="Script" uid="uid://b6af6mxxrcc2h" path="res://handlers/base_input_handler.gd" id="6_215e1"]
 [ext_resource type="Texture2D" uid="uid://ky4x8aog18fb" path="res://dejavu10x10_gs_tc.png" id="8_j5wjh"]
 [ext_resource type="Script" uid="uid://nedkxn17t551" path="res://ui/hp_display.gd" id="9_hve3p"]
 [ext_resource type="Script" uid="uid://c3nksquf6nn4x" path="res://ui/mouseover_checker.gd" id="9_lc2xo"]
@@ -86,7 +87,8 @@ script = ExtResource("2_eow3j")
 input_handler_nodes = {
 0: NodePath("MainGameInputHendler"),
 1: NodePath("GameOverInputHandler"),
-2: NodePath("HistoryViewer")
+2: NodePath("HistoryViewer"),
+3: NodePath("DummyInputHandler")
 }
 
 [node name="MainGameInputHendler" type="Node" parent="VBoxContainer/SubViewportContainer/SubViewport/Game/InputHandler" unique_id=398467202]
@@ -99,6 +101,9 @@ script = ExtResource("4_vef74")
 script = ExtResource("5_iotsf")
 message_panel = NodePath("../../../../../InfoBar/MessagesPanel")
 message_log = NodePath("../../../../../InfoBar/MessagesPanel/MessageLog")
+
+[node name="DummyInputHandler" type="Node" parent="VBoxContainer/SubViewportContainer/SubViewport/Game/InputHandler" unique_id=1646067530]
+script = ExtResource("6_215e1")
 
 [node name="Map" type="Node2D" parent="VBoxContainer/SubViewportContainer/SubViewport/Game" unique_id=483296257 node_paths=PackedStringArray("tiles", "entities", "dungeon_generator", "field_of_view")]
 script = ExtResource("3_fc0e3")
