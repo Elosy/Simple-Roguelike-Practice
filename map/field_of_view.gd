@@ -1,11 +1,11 @@
 class_name FieldOfView
 extends Node
 
-const multipliers = [
+const MULTIPLIERS = [
 	[1, 0, 0, -1, -1, 0, 0, 1],
 	[0, 1, -1, 0, 0, -1, 1, 0],
 	[0, 1, 1, 0, 0, -1, -1, 0],
-	[1, 0, 0, 1, -1, 0, 0, -1]
+	[1, 0, 0, 1, -1, 0, 0, -1],
 ]
 
 var _fov: Array[Tile] = []
@@ -17,7 +17,7 @@ func update_fov(map_data: MapData, origin: Vector2i, radius: int) -> void:
 	start_tile.is_in_view = true
 	_fov = [start_tile]
 	for i in 8:
-		_cast_light(map_data, origin.x, origin.y, radius, 1, 1.0, 0.0, multipliers[0][i], multipliers[1][i], multipliers[2][i], multipliers[3][i])
+		_cast_light(map_data, origin.x, origin.y, radius, 1, 1.0, 0.0, MULTIPLIERS[0][i], MULTIPLIERS[1][i], MULTIPLIERS[2][i], MULTIPLIERS[3][i])
 
 
 func _clear_fov() -> void:
