@@ -12,7 +12,7 @@ func _ready() -> void:
 
 func add_message(text: String, color: Color) -> void:
 	if (last_message != null and
-		last_message.plain_text == text
+			last_message.plain_text == text
 	):
 		last_message.count += 1
 	else:
