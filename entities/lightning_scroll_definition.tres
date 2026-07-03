@@ -2,21 +2,17 @@
 
 [ext_resource type="Script" uid="uid://dl6tkkgiyh3cy" path="res://entities/components/lightning_damage_consumable_component_definition.gd" id="1_0ld4w"]
 [ext_resource type="Script" uid="uid://dmibbelpwu1bi" path="res://entities/entity_definition.gd" id="1_3jeil"]
-[ext_resource type="Texture2D" uid="uid://ky4x8aog18fb" path="res://dejavu10x10_gs_tc.png" id="3_ul06r"]
+[ext_resource type="Texture2D" uid="uid://dmubrwunjuowr" path="res://entities/scroll_texture.tres" id="3_0ld4w"]
 
 [sub_resource type="Resource" id="Resource_7014u"]
 script = ExtResource("1_0ld4w")
 damage = 20
 maximum_range = 5
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_vcd6t"]
-atlas = ExtResource("3_ul06r")
-region = Rect2(180, 40, 10, 10)
-
 [resource]
 script = ExtResource("1_3jeil")
 name = "Lightning Scroll"
-texture = SubResource("AtlasTexture_vcd6t")
+texture = ExtResource("3_0ld4w")
 color = Color(1, 1, 0, 1)
 is_blocking_movement = false
 type = 1

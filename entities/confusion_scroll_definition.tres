@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="EntityDefinition" format=3 uid="uid://cuucyt54fud2d"]
+
+[ext_resource type="Script" uid="uid://kswf7o5c1kj4" path="res://entities/components/confusion_consumable_component_definition.gd" id="1_3gynr"]
+[ext_resource type="Script" uid="uid://dmibbelpwu1bi" path="res://entities/entity_definition.gd" id="1_cn1vs"]
+[ext_resource type="Texture2D" uid="uid://dmubrwunjuowr" path="res://entities/scroll_texture.tres" id="3_xnydd"]
+
+[sub_resource type="Resource" id="Resource_j6hvi"]
+script = ExtResource("1_3gynr")
+number_of_turns = 6
+metadata/_custom_type_script = "uid://kswf7o5c1kj4"
+
+[resource]
+script = ExtResource("1_cn1vs")
+name = "Confusion Scroll"
+texture = ExtResource("3_xnydd")
+color = Color(0.8117647, 0.24705882, 1, 1)
+is_blocking_movement = false
+type = 1
+consumable_definition = SubResource("Resource_j6hvi")
+metadata/_custom_type_script = "uid://dmibbelpwu1bi"

@@ -86,13 +86,13 @@ zoom = Vector2(2, 2)
 [node name="InputHandler" type="Node" parent="VBoxContainer/SubViewportContainer/SubViewport/Game" unique_id=565800449 node_paths=PackedStringArray("input_handler_nodes")]
 script = ExtResource("2_eow3j")
 input_handler_nodes = {
-0: NodePath("MainGameInputHendler"),
+0: NodePath("MainGameInputHandler"),
 1: NodePath("GameOverInputHandler"),
 2: NodePath("HistoryViewer"),
 3: NodePath("DummyInputHandler")
 }
 
-[node name="MainGameInputHendler" type="Node" parent="VBoxContainer/SubViewportContainer/SubViewport/Game/InputHandler" unique_id=398467202 node_paths=PackedStringArray("reticle")]
+[node name="MainGameInputHandler" type="Node" parent="VBoxContainer/SubViewportContainer/SubViewport/Game/InputHandler" unique_id=398467202 node_paths=PackedStringArray("reticle")]
 script = ExtResource("3_j5wjh")
 reticle = NodePath("../../Map/Reticle")
 

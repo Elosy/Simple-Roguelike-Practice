@@ -39,10 +39,12 @@ _data = {
 &"pulse": SubResource("Animation_rx70t")
 }
 
-[node name="Reticle" type="Node2D" unique_id=1312463995]
+[node name="Reticle" type="Node2D" unique_id=1312463995 node_paths=PackedStringArray("camera", "border")]
 z_index = 10
 z_as_relative = false
 script = ExtResource("1_0l6gv")
+camera = NodePath("Camera2D")
+border = NodePath("Line2D")
 
 [node name="Polygon2D" type="Polygon2D" parent="." unique_id=983314577]
 color = Color(1, 1, 1, 0.49803922)
@@ -56,3 +58,8 @@ autoplay = &"pulse"
 [node name="Camera2D" type="Camera2D" parent="." unique_id=942827055]
 zoom = Vector2(2, 2)
 process_callback = 0
+
+[node name="Line2D" type="Line2D" parent="." unique_id=1655689149]
+width = 2.0
+default_color = Color(1, 0, 0, 1)
+end_cap_mode = 1

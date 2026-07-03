@@ -13,7 +13,7 @@ config_version=5
 config/name="Simple Roguelike"
 run/main_scene="uid://5diwa0vg5tfm"
 config/features=PackedStringArray("4.6", "C#", "GL Compatibility")
-config/icon="uid://coq76njod1rbf"
+config/icon="uid://816vu3wlwlut"
 
 [autoload]
 
