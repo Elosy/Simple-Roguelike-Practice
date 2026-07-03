@@ -53,7 +53,7 @@ func get_item(window_title: String, inventory: InventoryComponent, evaluate_for_
 		await get_tree().physics_frame
 		MessageLog.send_message("No items in inventory.", GameColors.IMPOSSIBLE)
 		return null
-	var inventory_menu: InventoryMenu = inventory_menu_scene.instantiate()
+	var inventory_menu: InventoryMenu = INVENTORY_MENU_SCENE.instantiate()
 	add_child(inventory_menu)
 	inventory_menu.build(window_title, inventory)
 	get_parent().transition_to(InputHandler.InputHandlers.DUMMY)
