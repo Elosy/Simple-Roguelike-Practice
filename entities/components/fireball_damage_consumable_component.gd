@@ -1,3 +1,4 @@
+class_name FireballDamageConsumableComponent
 extends ConsumableComponent
 
 var damage: int
