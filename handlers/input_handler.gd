@@ -1,7 +1,7 @@
 class_name InputHandler
 extends Node
 
-enum InputHandlers {MAIN_GAME, GAME_OVER, HISTORY_VIEWER, DUMMY}
+enum InputHandlers { MAIN_GAME, GAME_OVER, HISTORY_VIEWER, DUMMY }
 
 @export var starter_input_handler: InputHandlers
 @export var input_handler_nodes: Dictionary[InputHandlers, Node]
@@ -19,6 +19,8 @@ func get_action(player: Entity) -> Action:
 
 
 func transition_to(input_handler: InputHandlers) -> void:
+	if current_input_handler == input_handler_nodes[InputHandlers.GAME_OVER]:
+		return
 	if current_input_handler != null:
 		current_input_handler.exit()
 	current_input_handler = input_handler_nodes[input_handler]
