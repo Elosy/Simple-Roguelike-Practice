@@ -72,7 +72,7 @@ func generate_dungeon(player: Entity) -> MapData:
 func _carve_tile(dungeon: MapData, x: int, y: int) -> void:
 	var tile_position = Vector2i(x, y)
 	var tile: Tile = dungeon.get_tile(tile_position)
-	tile.set_tile_type(dungeon.tile_types.floor)
+	tile.set_tile_type("floor")
 
 
 func _carve_room(dungeon: MapData, room: Rect2i) -> void:
@@ -132,7 +132,7 @@ func _place_entities(dungeon: MapData, room: Rect2i) -> void:
 			dungeon.entities.append(new_entity)
 
 
-## Tunnels
+#region tunnels
 func _tunnel_horizontal(dungeon: MapData, y: int, x_start: int, x_end: int) -> void:
 	var x_min: int = mini(x_start, x_end)
 	var x_max: int = maxi(x_start, x_end)

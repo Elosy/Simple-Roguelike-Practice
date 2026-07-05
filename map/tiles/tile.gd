@@ -1,7 +1,12 @@
 class_name Tile
 extends Sprite2D
 
-var _definition: TileDefinition
+const TILE_TYPES = {
+	"floor": preload("uid://qxi6b1fn00pb"),
+	"wall": preload("uid://bynspo34q4ohr"),
+}
+
+var key: String
 var is_explored: bool = false:
 	set(value):
 		is_explored = value
@@ -13,17 +18,19 @@ var is_in_view: bool = false:
 		modulate = _definition.color_lit if is_in_view else _definition.color_dark
 		if is_in_view and not is_explored:
 			is_explored = true
+var _definition: TileDefinition
 
 
-func _init(grid_position: Vector2i, tile_definition: TileDefinition) -> void:
+func _init(grid_position: Vector2i, key: String) -> void:
 	visible = false
 	centered = false
 	position = Grid.grid_to_world(grid_position)
-	set_tile_type(tile_definition)
+	set_tile_type(key)
 
 
-func set_tile_type(tile_definition: TileDefinition) -> void:
-	_definition = tile_definition
+func set_tile_type(key: String) -> void:
+	self.key = key
+	_definition = TILE_TYPES[key]
 	texture = _definition.texture
 	modulate = _definition.color_dark
 
@@ -34,3 +41,16 @@ func is_walkable() -> bool:
 
 func is_transparent() -> bool:
 	return _definition.is_transparent
+
+
+#region save/load
+func get_save_data() -> Dictionary:
+	return {
+		"key": key,
+		"is_explored": is_explored,
+	}
+
+
+func restore(save_data: Dictionary) -> void:
+	set_tile_type(save_data["key"])
+	is_explored = save_data["is_explored"]

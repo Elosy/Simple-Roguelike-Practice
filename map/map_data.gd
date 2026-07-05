@@ -3,12 +3,7 @@ extends RefCounted
 
 signal entity_placed(entity)
 
-const tile_types = {
-	"floor": preload("uid://qxi6b1fn00pb"),
-	"wall": preload("uid://bynspo34q4ohr"),
-}
-
-const entity_pathfinding_weight: float = 10
+const ENTITY_PATHFINDING_WEIGHT: float = 10
 
 var width: int
 var height: int
@@ -26,13 +21,11 @@ func _init(map_width: int, map_height: int, _player: Entity) -> void:
 	_setup_tiles()
 
 
-func _setup_tiles() -> void:
-	tiles = []
-	for y in height:
-		for x in width:
-			var tile_position := Vector2i(x, y)
-			var tile := Tile.new(tile_position, tile_types.wall)
-			tiles.append(tile)
+func get_tile(grid_position: Vector2i) -> Tile:
+	var tile_index: int = grid_to_index(grid_position)
+	if tile_index == -1:
+		return null
+	return tiles[tile_index]
 
 
 func grid_to_index(grid_position: Vector2i) -> int:
@@ -41,20 +34,12 @@ func grid_to_index(grid_position: Vector2i) -> int:
 	return grid_position.y * width + grid_position.x
 
 
-#region getters
-
-func get_tile(grid_position: Vector2i) -> Tile:
-	var tile_index: int = grid_to_index(grid_position)
-	if tile_index == -1:
-		return null
-	return tiles[tile_index]
-
 func is_in_bounds(coordinate: Vector2i) -> bool:
 	return (
-		0 <= coordinate.x
-		and coordinate.x < width
-		and 0 <= coordinate.y
-		and coordinate.y < height
+			0 <= coordinate.x
+			and coordinate.x < width
+			and 0 <= coordinate.y
+			and coordinate.y < height
 	)
 
 
@@ -93,30 +78,34 @@ func get_items() -> Array[Entity]:
 	return items
 
 
-#endregion
-
-
-#region pathfinder
-
-func register_blocking_entity(entity: Entity) -> void:
-	pathfinder.set_point_weight_scale(entity.grid_position, entity_pathfinding_weight)
-
-
-func unregister_blocking_entity(entity: Entity) -> void:
-	pathfinder.set_point_weight_scale(entity.grid_position, 0)
-
-
+#region pathfinding
 func setup_pathfinding() -> void:
 	pathfinder = AStarGrid2D.new()
 	pathfinder.region = Rect2i(0, 0, width, height)
 	pathfinder.update()
 	for y in height:
 		for x in width:
-			var grid_position:= Vector2i(x, y)
+			var grid_position := Vector2i(x, y)
 			var tile: Tile = get_tile(grid_position)
 			pathfinder.set_point_solid(grid_position, not tile.is_walkable())
 	for entity in entities:
 		if entity.is_blocking_movement():
 			register_blocking_entity(entity)
 
-#endregion
+
+func unregister_blocking_entity(entity: Entity) -> void:
+	pathfinder.set_point_weight_scale(entity.grid_position, 0)
+
+
+func register_blocking_entity(entity: Entity) -> void:
+	pathfinder.set_point_weight_scale(entity.grid_position, ENTITY_PATHFINDING_WEIGHT)
+
+
+#region privs
+func _setup_tiles() -> void:
+	tiles = []
+	for y in height:
+		for x in width:
+			var tile_position := Vector2i(x, y)
+			var tile := Tile.new(tile_position, "wall")
+			tiles.append(tile)

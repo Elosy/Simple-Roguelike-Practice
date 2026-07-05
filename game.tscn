@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://5diwa0vg5tfm"]
 
+[ext_resource type="Script" uid="uid://bla5ct18yd3dp" path="res://game_root.gd" id="1_80cx4"]
 [ext_resource type="Script" uid="uid://bl3cfudq6hioq" path="res://game.gd" id="1_e2o6t"]
 [ext_resource type="Script" uid="uid://dyser2bihg6i2" path="res://handlers/input_handler.gd" id="2_eow3j"]
 [ext_resource type="Script" uid="uid://lyd2vfstl722" path="res://map/map.gd" id="3_fc0e3"]
@@ -45,13 +46,15 @@ outline_size = 4
 [sub_resource type="LabelSettings" id="LabelSettings_lc2xo"]
 font = ExtResource("10_mfdv2")
 
-[node name="InterfaceRoot" type="Control" unique_id=1535296703]
+[node name="InterfaceRoot" type="Control" unique_id=1535296703 node_paths=PackedStringArray("game")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_80cx4")
+game = NodePath("VBoxContainer/SubViewportContainer/SubViewport/Game")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1225050189]
 layout_mode = 1
