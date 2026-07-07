@@ -23,6 +23,11 @@ func load_main_menu() -> void:
 	main_menu.game_requested.connect(_on_game_requested)
 
 
+#region private funcs
 func _on_game_requested(try_load: bool) -> void:
 	var game: GameRoot = switch_to_scene(GAME_SCENE)
 	game.main_menu_requested.connect(load_main_menu)
+	if try_load:
+		game.load_game()
+	else:
+		game.new_game()

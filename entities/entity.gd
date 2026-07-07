@@ -4,6 +4,17 @@ extends Sprite2D
 enum AIType { NONE, HOSTILE }
 enum EntityType { CORPSE, ITEM, ACTOR }
 
+const ENTITY_TYPES = {
+	"player": "uid://e00r0wcbw55p",
+	"orc": "uid://cf85jr5ldqm4t",
+	"troll": "uid://bcvn5ooyl5qhx",
+	"health_potion": "uid://d04pe312sffv8",
+	"lightning_scroll": "uid://blrandh7qdglm",
+	"confusion_scroll": "uid://cuucyt54fud2d",
+	"fireball_scroll": "uid://bayureiql1i6p",
+}
+
+var key: String
 var type: EntityType:
 	set(value):
 		type = value
@@ -20,17 +31,21 @@ var fighter_component: FighterComponent
 var ai_component: BaseAIComponent
 var consumable_component: ConsumableComponent
 var inventory_component: InventoryComponent
+# Locals
 var _definition: EntityDefinition
 
 
-func _init(_map_data: MapData, start_position: Vector2i, entity_definition: EntityDefinition) -> void:
+func _init(_map_data: MapData, start_position: Vector2i, key: String) -> void:
 	centered = false
 	grid_position = start_position
 	self.map_data = _map_data
-	set_entity_type(entity_definition)
+	if key != "":
+		set_entity_type(key)
 
 
-func set_entity_type(entity_definition: EntityDefinition) -> void:
+func set_entity_type(_key: String) -> void:
+	self.key = _key
+	var entity_definition: EntityDefinition = load(ENTITY_TYPES[key])
 	_definition = entity_definition
 	type = _definition.type
 	blocks_movement = _definition.is_blocking_movement
@@ -79,7 +94,37 @@ func is_alive() -> bool:
 	return ai_component != null
 
 
-#endregion
+#region save/load
+func get_save_data() -> Dictionary:
+	var save_data: Dictionary = {
+		"x": grid_position.x,
+		"y": grid_position.y,
+		"key": key,
+	}
+	if fighter_component:
+		save_data["fighter_component"] = fighter_component.get_save_data()
+	if ai_component:
+		save_data["ai_component"] = ai_component.get_save_data()
+	if inventory_component:
+		save_data["inventory_component"] = inventory_component.get_save_data()
+	return save_data
+
+
+func restore(save_data: Dictionary) -> void:
+	grid_position = Vector2i(save_data["x"], save_data["y"])
+	set_entity_type(save_data["key"])
+	if fighter_component and save_data.has("fighter_component"):
+		fighter_component.restore(save_data["fighter_component"])
+	if ai_component and save_data.has("ai_component"):
+		var ai_data: Dictionary = save_data["ai_component"]
+		if ai_data["type"] == "ConfusedEnemyAI":
+			var confused_enemy_ai := ConfusedEnemyAIComponent.new(ai_data["turns_remaining"])
+			add_child(confused_enemy_ai)
+	if inventory_component and save_data.has("inventory_component"):
+		inventory_component.restore(save_data["inventory_component"])
+
+
+#region private funcs
 func _handle_consumable(consumable_definition: ConsumableComponentDefinition) -> void:
 	if consumable_definition is HealingConsumableComponentDefinition:
 		consumable_component = HealingConsumableComponent.new(consumable_definition)
@@ -92,3 +137,4 @@ func _handle_consumable(consumable_definition: ConsumableComponentDefinition) ->
 
 	if consumable_component:
 		add_child(consumable_component)
+		consumable_component.entity = self

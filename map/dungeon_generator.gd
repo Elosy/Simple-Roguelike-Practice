@@ -1,15 +1,6 @@
 class_name DungeonGenerator
 extends Node
 
-const ENTITY_TYPES = {
-	"orc": preload("uid://cf85jr5ldqm4t"),
-	"troll": preload("uid://bcvn5ooyl5qhx"),
-	"health_potion": preload("uid://d04pe312sffv8"),
-	"lightning_scroll": preload("uid://blrandh7qdglm"),
-	"confusion_scroll": preload("uid://cuucyt54fud2d"),
-	"fireball_scroll": preload("uid://bayureiql1i6p"),
-}
-
 @export_category("Map Dimensions")
 @export var map_width: int = 80
 @export var map_height: int = 45
@@ -101,9 +92,10 @@ func _place_entities(dungeon: MapData, room: Rect2i) -> void:
 		if can_place:
 			var new_entity: Entity
 			if _rng.randf() < 0.8:
-				new_entity = Entity.new(dungeon, new_entity_position, ENTITY_TYPES.orc)
+				new_entity = Entity.new(dungeon, new_entity_position, "orc")
+
 			else:
-				new_entity = Entity.new(dungeon, new_entity_position, ENTITY_TYPES.troll)
+				new_entity = Entity.new(dungeon, new_entity_position, "troll")
 			dungeon.entities.append(new_entity)
 
 	for i in number_of_items:
@@ -122,13 +114,13 @@ func _place_entities(dungeon: MapData, room: Rect2i) -> void:
 			var item_chance: float = _rng.randf()
 			var new_entity: Entity
 			if item_chance < 0.7:
-				new_entity = Entity.new(dungeon, new_entity_position, ENTITY_TYPES.health_potion)
+				new_entity = Entity.new(dungeon, new_entity_position, "health_potion")
 			elif item_chance < 0.8:
-				new_entity = Entity.new(dungeon, new_entity_position, ENTITY_TYPES.fireball_scroll)
+				new_entity = Entity.new(dungeon, new_entity_position, "fireball_scroll")
 			elif item_chance < 0.9:
-				new_entity = Entity.new(dungeon, new_entity_position, ENTITY_TYPES.confusion_scroll)
+				new_entity = Entity.new(dungeon, new_entity_position, "confusion_scroll")
 			else:
-				new_entity = Entity.new(dungeon, new_entity_position, ENTITY_TYPES.lightning_scroll)
+				new_entity = Entity.new(dungeon, new_entity_position, "lightning_scroll")
 			dungeon.entities.append(new_entity)
 
 
