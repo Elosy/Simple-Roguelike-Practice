@@ -20,6 +20,11 @@ func update_fov(map_data: MapData, origin: Vector2i, radius: int) -> void:
 		_cast_light(map_data, origin.x, origin.y, radius, 1, 1.0, 0.0, MULTIPLIERS[0][i], MULTIPLIERS[1][i], MULTIPLIERS[2][i], MULTIPLIERS[3][i])
 
 
+func reset_fov() -> void:
+	_fov = []
+
+
+#region private funcs
 func _clear_fov() -> void:
 	for tile in _fov:
 		tile.is_in_view = false

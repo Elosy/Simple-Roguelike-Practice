@@ -1,6 +1,8 @@
 class_name Map
 extends Node2D
 
+signal dungeon_floor_changed(floor)
+
 @export var fov_radius: int = 8
 @export_group("Nodes")
 @export var tiles: Node2D
@@ -11,11 +13,17 @@ extends Node2D
 var map_data: MapData
 
 
-func generate(player: Entity) -> void:
-	map_data = dungeon_generator.generate_dungeon(player)
-	map_data.entity_placed.connect(entities.add_child)
+func _ready():
+	SignalBus.player_descended.connect(next_floor)
+
+
+func generate(player: Entity, current_floor: int = 1) -> void:
+	map_data = dungeon_generator.generate_dungeon(player, current_floor)
+	if not map_data.entity_placed.is_connected(entities.add_child):
+		map_data.entity_placed.connect(entities.add_child)
 	_place_tiles()
 	_place_entities()
+	dungeon_floor_changed.emit(current_floor)
 
 
 func update_fov(player_position: Vector2i) -> void:
@@ -33,6 +41,19 @@ func load_game(player: Entity) -> bool:
 	_place_tiles()
 	_place_entities()
 	return true
+
+
+func next_floor() -> void:
+	var player: Entity = map_data.player
+	entities.remove_child(player)
+	for entity in entities.get_children():
+		emtity.queue_free()
+	for tile in tiles.get_children():
+		tile.queue_free()
+	generate(player, map_data.current_floor + 1)
+	player.get_node("Camera2D").make_current()
+	field_of_view.reset_fov()
+	update_fov(player.grid_position)
 
 
 #region private funcs
