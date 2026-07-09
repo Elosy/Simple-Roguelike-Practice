@@ -47,7 +47,7 @@ func next_floor() -> void:
 	var player: Entity = map_data.player
 	entities.remove_child(player)
 	for entity in entities.get_children():
-		emtity.queue_free()
+		entity.queue_free()
 	for tile in tiles.get_children():
 		tile.queue_free()
 	generate(player, map_data.current_floor + 1)

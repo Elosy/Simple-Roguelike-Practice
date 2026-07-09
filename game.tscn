@@ -16,6 +16,7 @@
 [ext_resource type="FontFile" uid="uid://bmnpokinfwckt" path="res://fonts/kenney_kenney-fonts/Kenney Pixel.ttf" id="10_mfdv2"]
 [ext_resource type="PackedScene" uid="uid://b40fjfwsfbo8b" path="res://ui/reticle/reticle.tscn" id="11_7sc4i"]
 [ext_resource type="Script" uid="uid://dl8svo6rj0itt" path="res://ui/message_log.gd" id="11_mfdv2"]
+[ext_resource type="Script" uid="uid://cvbp6d3wfuu38" path="res://ui/dungeon_floor_label.gd" id="16_e8heu"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vef74"]
 atlas = ExtResource("8_j5wjh")
@@ -42,6 +43,9 @@ bg_color = Color(0, 0.49803922, 0, 1)
 font = ExtResource("10_mfdv2")
 font_color = Color(0.18359044, 0.18359044, 0.18359044, 1)
 outline_size = 4
+
+[sub_resource type="LabelSettings" id="LabelSettings_rvswv"]
+font = ExtResource("10_mfdv2")
 
 [sub_resource type="LabelSettings" id="LabelSettings_lc2xo"]
 font = ExtResource("10_mfdv2")
@@ -119,13 +123,6 @@ field_of_view = NodePath("FieldOfView")
 
 [node name="DungeonGenerator" type="Node2D" parent="VBoxContainer/SubViewportContainer/SubViewport/Game/Map" unique_id=1342957598]
 script = ExtResource("4_fc0e3")
-map_width = null
-map_height = null
-max_rooms = null
-room_max_size = null
-room_min_size = null
-max_monsters_per_room = null
-max_items_per_room = null
 
 [node name="Entities" type="Node2D" parent="VBoxContainer/SubViewportContainer/SubViewport/Game/Map" unique_id=1101962529]
 
@@ -172,6 +169,11 @@ layout_mode = 2
 label_settings = SubResource("LabelSettings_215e1")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="DungeonFloorLabel" type="Label" parent="VBoxContainer/InfoBar/StatsPanel/VBoxContainer" unique_id=2062732411]
+layout_mode = 2
+label_settings = SubResource("LabelSettings_rvswv")
+script = ExtResource("16_e8heu")
 
 [node name="MouseoverLabel" type="Label" parent="VBoxContainer/InfoBar/StatsPanel/VBoxContainer" unique_id=1465461628]
 layout_mode = 2
