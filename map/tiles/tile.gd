@@ -4,6 +4,7 @@ extends Sprite2D
 const TILE_TYPES = {
 	"floor": preload("uid://qxi6b1fn00pb"),
 	"wall": preload("uid://bynspo34q4ohr"),
+	"down_stairs": preload("uid://cpt5eotjagt6e"),
 }
 
 var key: String

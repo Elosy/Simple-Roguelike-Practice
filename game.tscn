@@ -119,6 +119,13 @@ field_of_view = NodePath("FieldOfView")
 
 [node name="DungeonGenerator" type="Node2D" parent="VBoxContainer/SubViewportContainer/SubViewport/Game/Map" unique_id=1342957598]
 script = ExtResource("4_fc0e3")
+map_width = null
+map_height = null
+max_rooms = null
+room_max_size = null
+room_min_size = null
+max_monsters_per_room = null
+max_items_per_room = null
 
 [node name="Entities" type="Node2D" parent="VBoxContainer/SubViewportContainer/SubViewport/Game/Map" unique_id=1101962529]
 
