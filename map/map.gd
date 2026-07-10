@@ -40,6 +40,7 @@ func load_game(player: Entity) -> bool:
 		return false
 	_place_tiles()
 	_place_entities()
+	dungeon_floor_changed.emit(map_data.current_floor)
 	return true
 
 
