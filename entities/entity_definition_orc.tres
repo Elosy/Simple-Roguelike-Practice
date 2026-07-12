@@ -3,12 +3,18 @@
 [ext_resource type="Texture2D" uid="uid://mw6xpfvhdk50" path="res://entities/default_death_texture.tres" id="1_oyiks"]
 [ext_resource type="Script" uid="uid://d3x7i8dv7c0mn" path="res://entities/components/fighter_component_definition.gd" id="2_ynrqd"]
 [ext_resource type="Script" uid="uid://dmibbelpwu1bi" path="res://entities/entity_definition.gd" id="3_tm0y2"]
+[ext_resource type="Script" uid="uid://cmbj834v6t3vo" path="res://entities/components/level_component_definition.gd" id="3_ynrqd"]
 [ext_resource type="Texture2D" uid="uid://ky4x8aog18fb" path="res://dejavu10x10_gs_tc.png" id="4_dsi4t"]
 
 [sub_resource type="Resource" id="Resource_mtjok"]
 script = ExtResource("2_ynrqd")
 max_hp = 10
 power = 3
+
+[sub_resource type="Resource" id="Resource_tm0y2"]
+script = ExtResource("3_ynrqd")
+xp_given = 35
+metadata/_custom_type_script = "uid://cmbj834v6t3vo"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xkotc"]
 atlas = ExtResource("4_dsi4t")
@@ -21,4 +27,5 @@ texture = SubResource("AtlasTexture_xkotc")
 color = Color(0.24705882, 0.49803922, 0.24705882, 1)
 fighter_definition = SubResource("Resource_mtjok")
 ai_type = 1
+level_info = SubResource("Resource_tm0y2")
 metadata/_custom_type_script = "uid://dmibbelpwu1bi"
