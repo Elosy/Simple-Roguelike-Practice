@@ -3,10 +3,13 @@ extends Node2D
 
 signal player_created(player)
 
-@export var player: Entity
+const LEVEL_UP_MENU_SCENE: PackedScene = preload("uid://wft5xabgkmop")
+
 @export var input_handler: InputHandler
 @export var map: Map
 @export var camera: Camera2D
+
+var player: Entity
 
 
 func _physics_process(_delta: float) -> void:
@@ -21,6 +24,7 @@ func _physics_process(_delta: float) -> void:
 
 func new_game() -> void:
 	player = Entity.new(null, Vector2i.ZERO, "player")
+	player.level_component.level_up_required.connect(_on_player_level_up_requested)
 	player_created.emit(player)
 	remove_child(camera)
 	player.add_child(camera)
@@ -44,6 +48,7 @@ func load_game() -> bool:
 	player.add_child(camera)
 	if not map.load_game(player):
 		return false
+	player.level_component.level_up_required.connect(_on_player_level_up_requested)
 	player_created.emit(player)
 	map.update_fov(player.grid_position)
 	MessageLog.send_message.bind(
@@ -59,3 +64,12 @@ func _handle_enemy_turns() -> void:
 	for entity in get_map_data().get_actors():
 		if entity.is_alive() and entity != player:
 			entity.ai_component.perform()
+
+
+func _on_player_level_up_requested() -> void:
+	var level_up_menu: LevelUpMenu = LEVEL_UP_MENU_SCENE.instantiate()
+	add_child(level_up_menu)
+	level_up_menu.setup(player)
+	set_physics_process(false)
+	await level_up_menu.level_up_completed
+	set_physics_process.bind(true).call_deferred()

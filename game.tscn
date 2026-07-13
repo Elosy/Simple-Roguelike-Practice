@@ -17,6 +17,9 @@
 [ext_resource type="PackedScene" uid="uid://b40fjfwsfbo8b" path="res://ui/reticle/reticle.tscn" id="11_7sc4i"]
 [ext_resource type="Script" uid="uid://dl8svo6rj0itt" path="res://ui/message_log.gd" id="11_mfdv2"]
 [ext_resource type="Script" uid="uid://cvbp6d3wfuu38" path="res://ui/dungeon_floor_label.gd" id="16_e8heu"]
+[ext_resource type="Script" uid="uid://c6pcim1f0ktxa" path="res://ui/xp_display.gd" id="16_rvswv"]
+[ext_resource type="Script" uid="uid://c8scyb3h02i0y" path="res://ui/character_info_box.gd" id="17_e36ub"]
+[ext_resource type="LabelSettings" uid="uid://dce615d40ot28" path="res://ui/label_settings.tres" id="18_hb5m1"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vef74"]
 atlas = ExtResource("8_j5wjh")
@@ -34,10 +37,10 @@ texture_margin_right = 5.0
 texture_margin_bottom = 5.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iotsf"]
-bg_color = Color(0.49803922, 0, 0, 1)
+bg_color = Color(0, 0, 0.49803922, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lc2xo"]
-bg_color = Color(0, 0.49803922, 0, 1)
+bg_color = Color(0, 0, 1, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_215e1"]
 font = ExtResource("10_mfdv2")
@@ -170,6 +173,53 @@ label_settings = SubResource("LabelSettings_215e1")
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="XpDisplay" type="MarginContainer" parent="VBoxContainer/InfoBar/StatsPanel/VBoxContainer" unique_id=756674824 node_paths=PackedStringArray("xp_bar", "xp_label")]
+layout_mode = 2
+script = ExtResource("16_rvswv")
+xp_bar = NodePath("../HpDisplay/HpBar")
+xp_label = NodePath("XpLabel")
+
+[node name="XpBar" type="ProgressBar" parent="VBoxContainer/InfoBar/StatsPanel/VBoxContainer/XpDisplay" unique_id=1396554279]
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_iotsf")
+theme_override_styles/fill = SubResource("StyleBoxFlat_lc2xo")
+step = 1.0
+show_percentage = false
+
+[node name="XpLabel" type="Label" parent="VBoxContainer/InfoBar/StatsPanel/VBoxContainer/XpDisplay" unique_id=888192255]
+layout_mode = 2
+label_settings = SubResource("LabelSettings_215e1")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CharacterInfoBox" type="HBoxContainer" parent="VBoxContainer/InfoBar/StatsPanel/VBoxContainer" unique_id=1469074139 node_paths=PackedStringArray("level_label", "attack_label", "defense_label")]
+layout_mode = 2
+script = ExtResource("17_e36ub")
+level_label = NodePath("LevelLabel")
+attack_label = NodePath("AttackLabel")
+defense_label = NodePath("DefenseLabel")
+
+[node name="LevelLabel" type="Label" parent="VBoxContainer/InfoBar/StatsPanel/VBoxContainer/CharacterInfoBox" unique_id=117350923]
+layout_mode = 2
+size_flags_horizontal = 3
+label_settings = ExtResource("18_hb5m1")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AttackLabel" type="Label" parent="VBoxContainer/InfoBar/StatsPanel/VBoxContainer/CharacterInfoBox" unique_id=206886831]
+layout_mode = 2
+size_flags_horizontal = 3
+label_settings = ExtResource("18_hb5m1")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DefenseLabel" type="Label" parent="VBoxContainer/InfoBar/StatsPanel/VBoxContainer/CharacterInfoBox" unique_id=1896277466]
+layout_mode = 2
+size_flags_horizontal = 3
+label_settings = ExtResource("18_hb5m1")
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="DungeonFloorLabel" type="Label" parent="VBoxContainer/InfoBar/StatsPanel/VBoxContainer" unique_id=2062732411]
 layout_mode = 2
 label_settings = SubResource("LabelSettings_rvswv")
@@ -198,5 +248,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 
 [connection signal="player_created" from="VBoxContainer/SubViewportContainer/SubViewport/Game" to="VBoxContainer/InfoBar/StatsPanel/VBoxContainer/HpDisplay" method="initialize"]
+[connection signal="player_created" from="VBoxContainer/SubViewportContainer/SubViewport/Game" to="VBoxContainer/InfoBar/StatsPanel/VBoxContainer/XpDisplay" method="initialize"]
+[connection signal="player_created" from="VBoxContainer/SubViewportContainer/SubViewport/Game" to="VBoxContainer/InfoBar/StatsPanel/VBoxContainer/CharacterInfoBox" method="setup"]
 [connection signal="dungeon_floor_changed" from="VBoxContainer/SubViewportContainer/SubViewport/Game/Map" to="VBoxContainer/InfoBar/StatsPanel/VBoxContainer/DungeonFloorLabel" method="set_dungeon_floor"]
 [connection signal="entities_focussed" from="VBoxContainer/SubViewportContainer/SubViewport/Game/Map/MouseoverChecker" to="VBoxContainer/InfoBar/StatsPanel/VBoxContainer/MouseoverLabel" method="set_text"]

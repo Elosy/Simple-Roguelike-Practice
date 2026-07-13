@@ -1,23 +1,8 @@
 [gd_scene format=3 uid="uid://3uvnneuinasb"]
 
-[ext_resource type="Texture2D" uid="uid://ky4x8aog18fb" path="res://dejavu10x10_gs_tc.png" id="1_gqjon"]
 [ext_resource type="Script" uid="uid://bmjiq26nf7kpl" path="res://ui/inventory_menu/inventory_menu.gd" id="1_tulx0"]
 [ext_resource type="FontFile" uid="uid://bmnpokinfwckt" path="res://fonts/kenney_kenney-fonts/Kenney Pixel.ttf" id="2_tulx0"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_vef74"]
-atlas = ExtResource("1_gqjon")
-region = Rect2(100, 20, 10, 10)
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wa6qm"]
-content_margin_left = 8.0
-content_margin_top = 8.0
-content_margin_right = 8.0
-content_margin_bottom = 8.0
-texture = SubResource("AtlasTexture_vef74")
-texture_margin_left = 5.0
-texture_margin_top = 5.0
-texture_margin_right = 5.0
-texture_margin_bottom = 5.0
+[ext_resource type="StyleBox" uid="uid://dx0aqvn4e8qp5" path="res://ui/panelcontainer_style_box_texture.tres" id="2_wa6qm"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_u1r0k"]
 font = ExtResource("2_tulx0")
@@ -39,7 +24,7 @@ grow_vertical = 2
 
 [node name="PanelContainer" type="PanelContainer" parent="CenterContainer" unique_id=1244699101]
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_wa6qm")
+theme_override_styles/panel = ExtResource("2_wa6qm")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer" unique_id=1612202716]
 layout_mode = 2
