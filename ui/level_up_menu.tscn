@@ -46,8 +46,11 @@ unicode = 99
 [sub_resource type="Shortcut" id="Shortcut_qvbvg"]
 events = [SubResource("InputEventKey_hvoam")]
 
-[node name="LevelUpMenu" type="CanvasLayer" unique_id=1067117447]
+[node name="LevelUpMenu" type="CanvasLayer" unique_id=1067117447 node_paths=PackedStringArray("health_upgrade_button", "power_upgrade_button", "defense_upgrade_button")]
 script = ExtResource("1_sg40o")
+health_upgrade_button = NodePath("CenterContainer/PanelContainer/VBoxContainer/HealthUpgradeButton")
+power_upgrade_button = NodePath("CenterContainer/PanelContainer/VBoxContainer/PowerUpgradeButton")
+defense_upgrade_button = NodePath("CenterContainer/PanelContainer/VBoxContainer/DefenseUpgradeButton")
 
 [node name="CenterContainer" type="CenterContainer" parent="." unique_id=256459325]
 anchors_preset = 15
@@ -93,3 +96,7 @@ shortcut = SubResource("Shortcut_jsi81")
 [node name="DefenseUpgradeButton" parent="CenterContainer/PanelContainer/VBoxContainer" unique_id=993491564 instance=ExtResource("3_sg40o")]
 layout_mode = 2
 shortcut = SubResource("Shortcut_qvbvg")
+
+[connection signal="pressed" from="CenterContainer/PanelContainer/VBoxContainer/HealthUpgradeButton" to="." method="_on_health_upgrade_button_pressed"]
+[connection signal="pressed" from="CenterContainer/PanelContainer/VBoxContainer/PowerUpgradeButton" to="." method="_on_power_upgrade_button_pressed"]
+[connection signal="pressed" from="CenterContainer/PanelContainer/VBoxContainer/DefenseUpgradeButton" to="." method="_on_defence_upgrade_button_pressed"]
