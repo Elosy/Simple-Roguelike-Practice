@@ -12,6 +12,10 @@ const ENTITY_TYPES = {
 	"lightning_scroll": "uid://blrandh7qdglm",
 	"confusion_scroll": "uid://cuucyt54fud2d",
 	"fireball_scroll": "uid://bayureiql1i6p",
+	"dagger": "uid://dj1b4jvrio8rv",
+	"sword": "uid://cmgykgjif3n4s",
+	"chainmail": "uid://csjcx2hikaest",
+	"leather_armor": "uid://cuuoqvhfppnrt",
 }
 
 var key: String

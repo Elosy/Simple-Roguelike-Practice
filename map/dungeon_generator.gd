@@ -13,8 +13,8 @@ const MAX_MONSTERS_BY_FLOOR = [
 const ITEM_CHANCES = {
 	0: { "health_potion": 35 },
 	2: { "confusion_scroll": 10 },
-	4: { "lightning_scroll": 25 },
-	6: { "fireball_scroll": 25 },
+	4: { "lightning_scroll": 25, "sword": 5 },
+	6: { "fireball_scroll": 25, "chainmail": 15 },
 }
 const ENEMY_CHANCES = {
 	0: { "orc": 80 },
