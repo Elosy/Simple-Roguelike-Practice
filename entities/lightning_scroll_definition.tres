@@ -4,10 +4,11 @@
 [ext_resource type="Script" uid="uid://dmibbelpwu1bi" path="res://entities/entity_definition.gd" id="1_3jeil"]
 [ext_resource type="Texture2D" uid="uid://dmubrwunjuowr" path="res://entities/scroll_texture.tres" id="3_0ld4w"]
 
-[sub_resource type="Resource" id="Resource_7014u"]
+[sub_resource type="Resource" id="Resource_0ld4w"]
 script = ExtResource("1_0ld4w")
-damage = 20
+damage = 12
 maximum_range = 5
+metadata/_custom_type_script = "uid://dl6tkkgiyh3cy"
 
 [resource]
 script = ExtResource("1_3jeil")
@@ -16,5 +17,5 @@ texture = ExtResource("3_0ld4w")
 color = Color(1, 1, 0, 1)
 is_blocking_movement = false
 type = 1
-consumable_definition = SubResource("Resource_7014u")
+item_definition = SubResource("Resource_0ld4w")
 metadata/_custom_type_script = "uid://dmibbelpwu1bi"

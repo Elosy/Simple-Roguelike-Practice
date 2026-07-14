@@ -4,21 +4,21 @@
 [ext_resource type="Script" uid="uid://dmibbelpwu1bi" path="res://entities/entity_definition.gd" id="2_kquqh"]
 [ext_resource type="Texture2D" uid="uid://ky4x8aog18fb" path="res://dejavu10x10_gs_tc.png" id="3_ohhur"]
 
-[sub_resource type="Resource" id="Resource_x6ujj"]
+[sub_resource type="Resource" id="Resource_kquqh"]
 script = ExtResource("1_tthrf")
 power_bonus = 2
 metadata/_custom_type_script = "uid://bco4nrhrk4h2c"
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_a0iye"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_ohhur"]
 atlas = ExtResource("3_ohhur")
 region = Rect2(30, 40, 10, 10)
 
 [resource]
 script = ExtResource("2_kquqh")
 name = "Dagger"
-texture = SubResource("AtlasTexture_a0iye")
+texture = SubResource("AtlasTexture_ohhur")
 color = Color(0.49803922, 0.49803922, 0.49803922, 1)
 is_blocking_movement = false
 type = 1
-item_definition = SubResource("Resource_x6ujj")
+item_definition = SubResource("Resource_kquqh")
 metadata/_custom_type_script = "uid://dmibbelpwu1bi"

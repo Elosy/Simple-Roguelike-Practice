@@ -4,21 +4,22 @@
 [ext_resource type="Script" uid="uid://dmibbelpwu1bi" path="res://entities/entity_definition.gd" id="2_seene"]
 [ext_resource type="Texture2D" uid="uid://ky4x8aog18fb" path="res://dejavu10x10_gs_tc.png" id="3_05sly"]
 
-[sub_resource type="Resource" id="Resource_saeqk"]
+[sub_resource type="Resource" id="Resource_5skdt"]
 script = ExtResource("1_5skdt")
-defense_bonus = 1
+equipment_type = 1
+defense_bonus = 3
 metadata/_custom_type_script = "uid://bco4nrhrk4h2c"
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_7if8j"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_seene"]
 atlas = ExtResource("3_05sly")
-region = Rect2(110, 40, 10, 10)
+region = Rect2(20, 40, 10, 10)
 
 [resource]
 script = ExtResource("2_seene")
-name = "Leather Armor"
-texture = SubResource("AtlasTexture_7if8j")
+name = "Chainmail"
+texture = SubResource("AtlasTexture_seene")
 color = Color(0.49803922, 0.49803922, 0.49803922, 1)
 is_blocking_movement = false
 type = 1
-item_definition = SubResource("Resource_saeqk")
+item_definition = SubResource("Resource_5skdt")
 metadata/_custom_type_script = "uid://dmibbelpwu1bi"
