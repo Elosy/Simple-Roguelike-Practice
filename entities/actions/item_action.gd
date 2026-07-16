@@ -14,7 +14,6 @@ func _init(_entity: Entity, _item: Entity, _target_position = null) -> void:
 		self.target_position = entity.grid_position
 
 
-
 func get_target_actor() -> Entity:
 	return get_map_data().get_actor_at_location(target_position)
 
@@ -22,4 +21,6 @@ func get_target_actor() -> Entity:
 func perform() -> bool:
 	if item == null:
 		return false
+	if item.equippable_component:
+		return EquipAction.new(entity, item).perform()
 	return item.consumable_component.activate(self)

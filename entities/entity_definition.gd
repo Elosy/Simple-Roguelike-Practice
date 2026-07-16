@@ -16,3 +16,4 @@ extends Resource
 @export var item_definition: ItemComponentDefinition
 @export var inventory_capacity: int = 0
 @export var level_info: LevelComponentDefinition
+@export var has_equipment: bool = false
