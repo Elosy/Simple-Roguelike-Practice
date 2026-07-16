@@ -4,7 +4,7 @@ This is the project made by following SelinaDev's guide "Yet Another Roguelike T
 
 https://selinadev.github.io/05-rogueliketutorial-01/
 
-It is not followed exactly.
+It is not followed exactly. Made with Godot 4.6.3.
 
 It uses regions as markers, without ands, since the autoformatter i used didn't like them.
 
