@@ -25,6 +25,12 @@ func _physics_process(_delta: float) -> void:
 func new_game() -> void:
 	player = Entity.new(null, Vector2i.ZERO, "player")
 
+	# Add equipment component manually if it doesn't exist yet
+	if not player.equipment_component:
+		player.equipment_component = EquipmentComponent.new()
+		player.add_child(player.equipment_component)
+		player.equipment_component.entity = player
+
 	_add_player_start_equipment("dagger")
 	_add_player_start_equipment("leather_armor")
 

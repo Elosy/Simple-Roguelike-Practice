@@ -60,19 +60,21 @@ func set_entity_type(_key: String) -> void:
 	texture = entity_definition.texture
 	modulate = entity_definition.color
 
-	if entity_definition.get("item_definition") != null:
-		var item_definition = entity_definition.item_definition
+	match entity_definition.ai_type:
+		AIType.HOSTILE:
+			ai_component = HostileEnemyAIComponent.new()
+			add_child(ai_component)
+
+	var item_definition: ItemComponentDefinition = entity_definition.item_definition
+	if item_definition:
 		if item_definition is ConsumableComponentDefinition:
 			_handle_consumable(item_definition)
-		elif item_definition is EquippableComponentDefinition:
+		else:
 			equippable_component = EquippableComponent.new(item_definition)
 
 	if entity_definition.fighter_definition:
 		fighter_component = FighterComponent.new(entity_definition.fighter_definition)
 		add_child(fighter_component)
-
-	if entity_definition.consumable_definition:
-		_handle_consumable(entity_definition.consumable_definition)
 
 	if entity_definition.inventory_capacity > 0:
 		inventory_component = InventoryComponent.new(entity_definition.inventory_capacity)
